@@ -1,16 +1,4 @@
----
-apiVersion: backstage.io/v1beta3
-kind: Template
-# some metadata about the template itself
-metadata:
-  name: sample-template
-  title: Test Action Template
-  description: Scaffolds template-name template
-spec:
-  owner: tinmegali:myself
-  type: service
-
-  # these are the steps which are rendered in the frontend with the form input
+# Edit the template parameters below to see how they will render in the scaffolder form UI
 parameters:
   - title: Fill in some steps
     required:
@@ -20,10 +8,7 @@ parameters:
         title: Name
         type: string
         description: Unique name of the component
-        ui:autofocus: true
-        ui:options:
-          rows: 5
-      ownwer:
+      owner:
         title: Owner
         type: string
         description: Owner of the component
@@ -31,15 +16,6 @@ parameters:
         ui:options:
           allowedKinds:
             - Group
-      urlParameter:
-        title: URL endpoint
-        type: string
-        description: URL endpoint at which the component can be reached
-        default: 'https://www.example.com'
-      enabledDB:
-        title: Enable Database
-        type: boolean
-        default: false
   - title: Choose a location
     required:
       - repoUrl
@@ -51,46 +27,11 @@ parameters:
         ui:options:
           allowedHosts:
             - github.com
-
-# here's the steps that are executed in series in the scaffolder backend
 steps:
   - id: fetch-base
     name: Fetch Base
     action: fetch:template
     input:
-      url: ./templates/sample-template
+      url: ./template
       values:
-        name: ${{ parameters.name }}
-        owner: ${{ parameters.owner }}
-
-  - id: fetch-docs
-    name: Fetch Docs
-    action: fetch:plain
-    input:
-      targetPath: ./community
-      url: https://github.com/backstage/community/tree/main/backstage-community-sessions
-
-  - id: publish
-    name: Publish
-    action: publish:github
-    input:
-      allowedHosts: ['github.com']
-      description: This is ${{ parameters.name }}
-      repoUrl: ${{ parameters.repoUrl }}
-      gitAuthorName: ${{ user.entity.metadata.name }}
-      gitAuthorEmail: ${{ user.entity.spec.profile.email }}
-
-  - id: register
-    name: Register
-    action: catalog:register
-    input:
-      repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
-      catalogInfoPath: '/catalog-info.yaml'
-
-output:
-  links:
-    - title: Repository
-      url: ${{ steps.publish.output.remoteUrl }}
-    - title: Open in catalog
-      icon: catalog
-      entityRef: ${{ steps.register.output.entityRef }}
+        name: ${{parameters.name}}
