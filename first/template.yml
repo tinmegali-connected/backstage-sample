@@ -1,3 +1,15 @@
+---
+apiVersion: backstage.io/v1beta3
+kind: Template
+# some metadata about the template itself
+metadata:
+  name: sample-template
+  title: Test Action Template
+  description: Scaffolds template-name template
+spec:
+  owner: tinmegali:myself
+  type: service
+  
 # Edit the template parameters below to see how they will render in the scaffolder form UI
 parameters:
   - title: Fill in some steps
