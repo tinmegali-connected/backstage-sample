@@ -61,7 +61,7 @@ spec:
       name: Fetch Base
       action: fetch:template
       input:
-        targetPath: ./first/template-code
+        url: ./template-code
         values:
           name: ${{ parameters.name }}
 
