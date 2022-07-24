@@ -11,46 +11,46 @@ spec:
   type: service
 
   # these are the steps which are rendered in the frontend with the form input
-parameters:
-  - title: Fill in some steps
-    required:
-      - name
-    properties:
-      name:
-        title: Name
-        type: string
-        description: Unique name of the component
-        ui:autofocus: true
-        ui:options:
-          rows: 5
-      ownwer:
-        title: Owner
-        type: string
-        description: Owner of the component
-        ui:field: OwnerPicker
-        ui:options:
-          allowedKinds:
-            - Group
-      urlParameter:
-        title: URL endpoint
-        type: string
-        description: URL endpoint at which the component can be reached
-        default: 'https://www.example.com'
-      enabledDB:
-        title: Enable Database
-        type: boolean
-        default: false
-  - title: Choose a location
-    required:
-      - repoUrl
-    properties:
-      repoUrl:
-        title: Repository Location
-        type: string
-        ui:field: RepoUrlPicker
-        ui:options:
-          allowedHosts:
-            - github.com
+  parameters:
+    - title: Fill in some steps
+      required:
+        - name
+      properties:
+        name:
+          title: Name
+          type: string
+          description: Unique name of the component
+          ui:autofocus: true
+          ui:options:
+            rows: 5
+        ownwer:
+          title: Owner
+          type: string
+          description: Owner of the component
+          ui:field: OwnerPicker
+          ui:options:
+            allowedKinds:
+              - Group
+        urlParameter:
+          title: URL endpoint
+          type: string
+          description: URL endpoint at which the component can be reached
+          default: 'https://www.example.com'
+        enabledDB:
+          title: Enable Database
+          type: boolean
+          default: false
+    - title: Choose a location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
 
 # here's the steps that are executed in series in the scaffolder backend
 steps:
