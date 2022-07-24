@@ -67,6 +67,7 @@ spec:
           name: ${{ parameters.name }}
           url: ${{ parameters.repoUrl }}
           enabledDB: ${{ parameters.enabledDB }}
+          owner: ${{ parameters.owner }}
 
     - id: fetch-docs
       name: Fetch Docs
@@ -83,9 +84,3 @@ spec:
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
         token: ${{ secrets.USER_OAUTH_TOKEN }}
-
-    - id: register
-      name: Register
-      action: catalog:register
-      input:
-        catalogInfoUrl: https://github.com/tinmegali-connected/backstage-sample/blob/main/catalog-info.yaml

@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha3
+kind: Component
+metadata:
+    name: backstage-sample
+    annotations:
+        github.com/project-slug: tinmegali-connected/backstage-sample
+    links:
+        title: repository
+        url: ${{ values.url }}
+spec:
+    type: service
+    lifecycle: experimental
+    owner: ${{ values.owner }}
