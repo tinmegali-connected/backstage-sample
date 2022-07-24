@@ -6,7 +6,7 @@ metadata:
   title: Test Action template
   description: scaffolder v1beta3 template demo
 spec:
-  owner: connected/tinmegali
+  owner: tinmegali-connected
   type: service
 
   # these are the steps which are rendered in the frontend with the form input
@@ -27,7 +27,15 @@ spec:
           type: string
           ui:autofocus: false
           ui:options:
-            rows: 5
+            rows: 5  
+        owner:
+          title: Owner
+          type: string
+          description: Owner of the component
+          ui:field: OwnerPicker
+          ui:options:
+            allowedKinds:
+              - Group
     - title: Choose a location
       required:
         - repoUrl
@@ -39,6 +47,9 @@ spec:
           ui:options:
             allowedHosts:
               - github.com
+            allowedOwners:
+              - tinmegali-connected
+
         enabledDB:
           title: Enable database
           type: boolean
@@ -50,7 +61,7 @@ spec:
       name: Fetch Base
       action: fetch:template
       input:
-        url: ./template
+        targetPath: ./first/template-code
         values:
           name: ${{ parameters.name }}
 
@@ -68,6 +79,7 @@ spec:
         allowedHosts: ['github.com']
         description: This is ${{ parameters.name }}
         repoUrl: ${{ parameters.repoUrl }}
+        token: ${{ secrets.USER_OAUTH_TOKEN }}
 
     - id: register
       name: Register
